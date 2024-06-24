@@ -6,12 +6,9 @@ pipeline
     {
         stage('Build'){
             steps {
-            sh 'echo "Hello World"'
-            sh 'echo "Hello World2"'
+            sh 'echo "Application Build start"'
             sh '''
-                echo "Hello World3"
-                echo "Hello World4"
-                echo "Hello World5"
+                mvn spring-boot:run
             '''
 
             }
