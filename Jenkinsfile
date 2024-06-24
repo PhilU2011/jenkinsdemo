@@ -8,7 +8,7 @@ pipeline
             steps {
             sh 'echo "Application Build start"'
             sh '''
-                mvn -B -DskipTests clean package
+                mvn --version
             '''
 
             }
