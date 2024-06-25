@@ -16,6 +16,8 @@ pipeline
             sh 'echo "Application Build start"'
             sh '''
                 mvn --version
+                echo "Spring Boot Start"
+                mvn spring-boot:run
             '''
 
             }
