@@ -19,10 +19,14 @@ pipeline
                 mvn --version
                 echo "Spring Boot Start"
                 mvn clean install
-                mvn spring-boot:run
+            '''
+            }
+        }
+        stage ('Test'){
+            sh'''
+                echo "Test run"
             '''
 
-            }
         }
 
     }
