@@ -17,7 +17,7 @@ pipeline
             sh '''
                 mvn --version
                 echo "Spring Boot Start"
-                mvn spring-boot:run
+                mvn clean install
             '''
 
             }
