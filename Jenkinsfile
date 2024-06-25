@@ -9,6 +9,7 @@ pipeline
                 agent {
                     docker {
                         image 'maven:latest'
+                        args 'u-root'
                     }
                 }
 
