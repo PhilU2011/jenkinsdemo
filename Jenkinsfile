@@ -1,10 +1,17 @@
 pipeline
 {
     agent any
-    tools {maven 'Maven 3.3.1'}
+
     stages
     {
-        stage('Build'){
+
+     stage('MavenBuild') {
+                agent {
+                    docker {
+                        image 'maven:latest'
+                    }
+                }
+
             steps {
             sh 'echo "Application Build start"'
             sh '''
