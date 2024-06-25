@@ -34,7 +34,7 @@ pipeline
             steps {
             sh'''
                 echo "Test run"
-                'mvn test'
+                mvn test
                 echo "Test run End"
             '''
             }
