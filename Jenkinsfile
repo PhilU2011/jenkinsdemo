@@ -44,7 +44,7 @@ pipeline
 
      post {
           always {
-          junit 'target/surefire-reports/*.xml'
+          junit '/var/jenkins_home/workspace/JenkinsApp@2/target/surefire-reports/*.xml'
           }
     }
 
