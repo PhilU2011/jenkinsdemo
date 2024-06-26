@@ -36,6 +36,7 @@ pipeline
                 echo "Test run"
                 mvn test
                 echo "Test run End"
+                cp -r /var/jenkins_home/workspace/JenkinsApp@2/target/surefire-reports/ $Workspace/target/surefire-reports
             '''
             }
         }
