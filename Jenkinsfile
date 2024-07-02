@@ -9,7 +9,9 @@ pipeline
                 agent {
                     docker {
                         image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
+                        }
                     }
+                    agent {
                     docker {
                         image 'maven:latest'
                         args '-u root'
