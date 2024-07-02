@@ -20,18 +20,14 @@ pipeline
                 mvn test
                 echo "Test run End"
                '''
-
+                }
                 post {
                          always {
                          junit '**/target/surefire-reports/*.xml'
                          }
                    }
-
-            }
         }
 
     }
-
-
 
 }
