@@ -8,44 +8,44 @@ pipeline
      stage('MavenBuild') {
                 agent {
                     docker {
-                        //E2E Playwright Test Image
-                        image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
-                        //image 'maven:latest'
-                        // args '-u root'
-                        }
+                        image 'maven:latest'
+                        //args '-u root'
                     }
+                }
 
             steps {
             sh 'echo "Application Build start"'
             sh '''
-
+                mvn --version
                 echo "Spring Boot Start"
-
-
+                mvn clean install
             '''
             }
         }
+        stage ('Test'){
 
-             stage('MavenBuildSecond') {
-                        agent {
-                            docker {
-                                image 'maven:latest'
-                                args '-u root'
-                                }
-                            }
-
-                    steps {
-                    sh 'echo "Application Build start"'
-                    sh '''
-                        mvn --version
-                        echo "Spring Boot Start"
-                        mvn clean install
-
-                    '''
-                    }
+        agent {
+           docker {
+                image 'maven:latest'
+                args '-u root'
                 }
+           }
 
-
+            steps {
+            sh'''
+                echo "Test run"
+                mvn test
+                echo "Test run End"
+               '''
+            }
+        }
 
     }
+
+     post {
+          always {
+          junit '**/target/surefire-reports/*.xml'
+          }
+    }
+
 }
