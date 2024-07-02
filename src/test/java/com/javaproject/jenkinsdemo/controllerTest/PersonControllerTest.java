@@ -26,4 +26,17 @@ public class PersonControllerTest {
 
     }
 
+
+    @Test
+    public void giveNumber2_whenGettingNumber2_thenReceiveMessage2(){
+
+        String expected = "Hello to the new World! 2";
+
+        Assertions.assertEquals(expected,"Hello to the new World! 2");
+
+
+
+    }
+
+
 }
