@@ -1,15 +1,11 @@
 
 
 pipeline {
-
-    agent any
-
-    stage ('Test') {
-
-    parallel
-        {
-
-              stage ('Test'){
+    stage ('Tests') {
+        parallel
+            {
+              stage ('Test')
+              {
 
                     agent {
                        docker {
@@ -18,14 +14,14 @@ pipeline {
                             }
                        }
 
-                        steps {
+                        steps
+                            {
                         sh'''
                             echo "Test run"
                             mvn test
                             echo "Test run End"
                            '''
-                    }
-
+                            }
             }
 
                  stage('MavenBuild') {
