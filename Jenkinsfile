@@ -1,6 +1,7 @@
 
 
 pipeline {
+        agent any
     stage ('Tests') {
         parallel
             {
