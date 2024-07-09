@@ -1,57 +1,56 @@
+pipeline
+{
+    agent any
 
+    stages
+    {
 
-pipeline {
+     stage('MavenBuild') {
+                agent {
+                    docker {
+                        image 'maven:latest'
+                        args '-u root'
+                    }
+                }
 
+            steps {
+            sh 'echo "Application Build start"'
+            sh '''
+                mvn --version
+                echo "Spring Boot Start"
+                mvn clean install
+            '''
+            }
+        }
+        stage ('Test'){
 
-      agent any
+        agent {
+           docker {
+                image 'maven:latest'
+                args '-u root'
+                }
+           }
 
-    stages {
-
-
-    stage ('Tests') {
-        parallel
-            {
-              stage ('Test')
-              {
-
-                    agent {
-                       docker {
-                            image 'maven:latest'
-                            args '-u root'
+            steps {
+            timeout(time: 1, unit: 'MINUTES')
+                            { //1 Minute TimeOut
+                             input message: 'Ready for deployment?', ok: 'Yes, I wanna deploy'
                             }
-                       }
-
-                        steps
-                            {
-                        sh'''
-                            echo "Test run"
-                            mvn test
-                            echo "Test run End"
-                           '''
-                            }
+            sh'''
+                echo "Test run"
+                mvn test
+                echo "Test run End"
+               '''
             }
 
-                 stage('MavenBuild') {
-                            agent {
-                                docker {
-                                    image 'maven:latest'
-                                    args '-u root'
-                                }
-                            }
+            post {
+                      always {
+                      junit '**/target/surefire-reports/*.xml'
+                      }
+                }
 
-                        steps {
-                        sh 'echo "Application Build start"'
-                        sh '''
-                            mvn --version
-                            echo "Spring Boot Start"
-                            mvn clean install
-                        '''
-                        }
-                    }
+        }
 
     }
 
-}
-
-}
 }
