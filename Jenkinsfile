@@ -8,7 +8,8 @@ pipeline
      stage('DockerBuild') {
 
             steps {
-            sh 'docker build -t mavenfile .'
+           // sh 'docker build -t mavenfile .'
+            sh 'echo "Start Jenkins"'
                 }
             }
 
