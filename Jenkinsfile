@@ -15,12 +15,13 @@ pipeline
         }
       stage ('MavenBuild')  {
 
+            steps {
                   sh '''
                             mvn --version
                             echo "Spring Boot Start"
                             mvn clean install
                         '''
-
+                }
       }
 
     }
