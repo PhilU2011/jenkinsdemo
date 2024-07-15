@@ -7,13 +7,12 @@ pipeline
 
      stage('DockerBuild') {
 
-
             steps {
             sh 'docker build -t mavenfile .'
                 }
             }
 
-      stage('DockerBuild') {
+      stage('MavenBuild') {
                       agent {
                           docker {
                               image 'mavenfile'
@@ -30,8 +29,5 @@ pipeline
                   '''
                       }
                   }
-
-
-
       }
  }
